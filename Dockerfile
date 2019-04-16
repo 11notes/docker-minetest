@@ -9,8 +9,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
 	&& echo "# :: creating directories :: #" \
 	&& mkdir -p /tmp/minetest \
 	&& mkdir -p /tmp/spatialindex \
-	&& mkdir -p /minetest  \
-	&& mkdir -p /minetest/etc  \
+	&& mkdir -p /minetest \
+	&& mkdir -p /minetest/etc \
+	&& mkdir -p /minetest/worlds \
 	&& mkdir -p /minetest/games \
 	&& mkdir -p /minetest/games/minetest_game \
 	&& echo "# :: install libraries :: #" \
@@ -67,7 +68,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
  	&& curl -o /tmp/minetest-src.tar.gz -L \
 		"https://github.com/minetest/minetest/archive/${minetestVersion}.tar.gz" \
  		&& tar xf /tmp/minetest-src.tar.gz -C /tmp/minetest --strip-components=1 \
-	&& cp /tmp/minetest/minetest.conf.example /minetest/etc/minetest.conf \
+	&& cp /tmp/minetest/minetest.conf.example /minetest/etc/default.conf \
 	&& cd /tmp/minetest \
  	&& cmake . \
 		-DBUILD_CLIENT=0 \
@@ -105,8 +106,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
 RUN chown -R minetest:minetest /minetest
 
 # :: Volumes
-VOLUME ["/minetest/etc", "/minetest/games"]
+VOLUME ["/minetest/etc", "/minetest/games", "/minetest/worlds"]
 
 # :: Start
 USER minetest
-CMD ["minetestserver", "--config", "/minetest/etc/minetest.conf"]
+CMD ["minetestserver", "--config", "/minetest/etc/default.conf", "--world", "/minetest/worlds/default"]
