@@ -102,6 +102,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
 	&& apk del --purge .build \
 	&& rm -rf /tmp/*
 
+COPY ./source/minetest.conf /minetest/etc/default.conf
+
 # :: docker -u 1000:1000 (no root initiative)
 RUN chown -R minetest:minetest /minetest
 
@@ -110,4 +112,4 @@ VOLUME ["/minetest/etc", "/minetest/games", "/minetest/worlds"]
 
 # :: Start
 USER minetest
-CMD ["minetestserver", "--config", "/minetest/etc/default.conf", "--world", "/minetest/worlds/default"]
+CMD ["minetestserver", "--config", "/minetest/etc/default.conf"]
