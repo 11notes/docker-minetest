@@ -1,5 +1,5 @@
 # :: Header
-FROM alpine:3.9
+FROM alpine:3.10
 ENV minetestVersion=5.0.1
 
 # :: Run
@@ -9,8 +9,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
 	&& echo "# :: creating directories :: #" \
 	&& mkdir -p /tmp/minetest \
 	&& mkdir -p /tmp/spatialindex \
-	&& mkdir -p /minetest  \
-	&& mkdir -p /minetest/etc  \
+	&& mkdir -p /minetest \
+	&& mkdir -p /minetest/etc \
+	&& mkdir -p /minetest/worlds \
 	&& mkdir -p /minetest/games \
 	&& mkdir -p /minetest/games/minetest_game \
 	&& echo "# :: install libraries :: #" \
@@ -67,7 +68,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
  	&& curl -o /tmp/minetest-src.tar.gz -L \
 		"https://github.com/minetest/minetest/archive/${minetestVersion}.tar.gz" \
  		&& tar xf /tmp/minetest-src.tar.gz -C /tmp/minetest --strip-components=1 \
-	&& cp /tmp/minetest/minetest.conf.example /minetest/etc/minetest.conf \
+	&& cp /tmp/minetest/minetest.conf.example /minetest/etc/default.conf \
 	&& cd /tmp/minetest \
  	&& cmake . \
 		-DBUILD_CLIENT=0 \
@@ -89,8 +90,6 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
 	&& make install \
 	&& echo "# :: compile complete :: #" \
 	&& cp -R /usr/share/minetest/games /minetest \
-	&& echo "# :: show content of /minetest/games :: #" \
-	&& ls -lah /minetest/games \
 	&& rm -R /usr/share/minetest/games \
 	&& ln -s /minetest/games /usr/share/minetest/games \
 	&& echo "# :: install minetest_game ${minetestVersion} :: #" \
@@ -101,12 +100,17 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
 	&& apk del --purge .build \
 	&& rm -rf /tmp/*
 
+COPY ./source/minetest.conf /minetest/etc/default.conf
+
 # :: docker -u 1000:1000 (no root initiative)
 RUN chown -R minetest:minetest /minetest
 
+# :: Version
+RUN echo "CI/CD{{$(minetestserver --version 2>&1)}}"
+
 # :: Volumes
-VOLUME ["/minetest/etc", "/minetest/games"]
+VOLUME ["/minetest/etc", "/minetest/games", "/minetest/worlds"]
 
 # :: Start
 USER minetest
-CMD ["minetestserver", "--config", "/minetest/etc/minetest.conf"]
+CMD ["minetestserver", "--config", "/minetest/etc/default.conf"]
