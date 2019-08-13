@@ -1,5 +1,5 @@
 # :: Header
-FROM alpine:3.9
+FROM alpine:3.10
 ENV minetestVersion=5.0.1
 
 # :: Run
@@ -90,8 +90,6 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
 	&& make install \
 	&& echo "# :: compile complete :: #" \
 	&& cp -R /usr/share/minetest/games /minetest \
-	&& echo "# :: show content of /minetest/games :: #" \
-	&& ls -lah /minetest/games \
 	&& rm -R /usr/share/minetest/games \
 	&& ln -s /minetest/games /usr/share/minetest/games \
 	&& echo "# :: install minetest_game ${minetestVersion} :: #" \
@@ -106,6 +104,9 @@ COPY ./source/minetest.conf /minetest/etc/default.conf
 
 # :: docker -u 1000:1000 (no root initiative)
 RUN chown -R minetest:minetest /minetest
+
+# :: Version
+RUN echo "CI/CD{{$(minetestserver --version 2>&1)}}"
 
 # :: Volumes
 VOLUME ["/minetest/etc", "/minetest/games", "/minetest/worlds"]
