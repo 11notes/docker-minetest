@@ -38,7 +38,7 @@
 			make \
 			mesa-dev \
 			openal-soft-dev \
-			python-dev \
+			python3-dev \
 			sqlite-dev \
 			leveldb-dev \
 		&& apk add --update --no-cache \
