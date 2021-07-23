@@ -1,6 +1,6 @@
 # :: Header
-	FROM alpine:3.12
-	ENV minetestVersion=5.3.0
+	FROM alpine:3.14
+	ENV minetestVersion=5.4.1
 
 # :: Run
 	USER root
