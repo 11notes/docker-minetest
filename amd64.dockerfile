@@ -18,6 +18,7 @@
 		&& apk add --update --no-cache --virtual=.build \
 			bzip2-dev \
 			cmake \
+			curl \
 			curl-dev \
 			doxygen \
 			g++ \
@@ -34,6 +35,7 @@
 			libressl-dev \
 			libtool \
 			libvorbis-dev \
+			luajit \
 			luajit-dev \
 			make \
 			mesa-dev \
@@ -44,6 +46,8 @@
 			zstd-dev \
 			jsoncpp-dev \
 			zlib-dev \
+			ncurses \
+			freetype \
 			freetype-dev \
 			libxxf86vm-dev \
 			jpeg-dev \
@@ -85,13 +89,13 @@
 			-DCUSTOM_BINDIR=/usr/bin \
 			-DCUSTOM_DOCDIR="/usr/share/doc/minetest" \
 			-DCUSTOM_SHAREDIR="/usr/share/minetest" \
-			-DENABLE_CURL=1 \
-			-DENABLE_FREETYPE=1 \
+			-DENABLE_CURL=0 \
+			-DENABLE_FREETYPE=0 \
 			-DENABLE_GETTEXT=0 \
-			-DENABLE_POSTGRESQL=1 \
+			-DENABLE_POSTGRESQL=0 \
 			-DENABLE_LEVELDB=1 \
 			-DENABLE_LUAJIT=1 \
-			-DENABLE_REDIS=1 \
+			-DENABLE_REDIS=0 \
 			-DENABLE_SOUND=1 \
 			-DENABLE_SYSTEM_GMP=1 \
 			-DRUN_IN_PLACE=0 \
