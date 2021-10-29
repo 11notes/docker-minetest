@@ -42,10 +42,8 @@
 			leveldb-dev \
 			sqlite-dev; \
 		apk add --update --no-cache \
-			leveldb \
 			curl \
 			gmp \
-			hiredis \
 			libgcc \
 			libintl \
 			libstdc++ \
