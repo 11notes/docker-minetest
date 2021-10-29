@@ -81,12 +81,8 @@
 			-DENABLE_SOUND=1 \
 			-DENABLE_SYSTEM_GMP=1 \
 			-DRUN_IN_PLACE=0 \
-			-DLEVELDB_INCLUDE_DIR="/usr/include/leveldb" \
-			-DLEVELDB_LIBRARY="/usr/lib" \
 			-DSQLITE3_INCLUDE_DIR="/usr/include" \
 			-DSQLITE3_LIBRARY="/usr/lib" \
-			-DLUA_INCLUDE_DIR="/usr/include/luajit-2.1" \
-			-DLUA_LIBRARY="/usr/lib/" \
 			-DBUILD_SERVER=1; \
 		make -j 2; \
 		make install; \
