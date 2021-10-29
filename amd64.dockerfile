@@ -41,6 +41,14 @@
 			python3-dev \
 			sqlite-dev \
 			leveldb-dev \
+			zstd-dev \
+			jsoncpp-dev \
+			zlib-dev \
+			freetype-dev \
+			libxxf86vm-dev \
+			jpeg-dev \
+			cmake \
+			build-base \
 		&& apk add --update --no-cache \
 			curl \
 			gmp \
@@ -80,12 +88,14 @@
 			-DENABLE_CURL=1 \
 			-DENABLE_FREETYPE=1 \
 			-DENABLE_GETTEXT=0 \
+			-DENABLE_POSTGRESQL=1 \
 			-DENABLE_LEVELDB=1 \
 			-DENABLE_LUAJIT=1 \
 			-DENABLE_REDIS=1 \
-			-DENABLE_SOUND=0 \
+			-DENABLE_SOUND=1 \
 			-DENABLE_SYSTEM_GMP=1 \
 			-DRUN_IN_PLACE=0 \
+			-DVERSION_EXTRA="11notes" \
 		&& make \
 		&& make install \
 		&& echo "# :: compile complete :: #" \
