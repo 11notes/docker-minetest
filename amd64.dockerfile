@@ -23,12 +23,9 @@
 			doxygen \
 			g++ \
 			gcc \
-			gettext-dev \
 			git \
 			gmp-dev \
-			hiredis-dev \
 			icu-dev \
-			irrlicht-dev \
 			libjpeg-turbo-dev \
 			libogg-dev \
 			libpng-dev \
@@ -62,6 +59,8 @@
 			libstdc++ \
 			luajit \
 			lua-socket \
+			sqlite \
+			sqlite-libs \
 			shadow \
 		&& echo "# :: creating user :: #" \
 		&& addgroup --gid 1000 -S minetest \
