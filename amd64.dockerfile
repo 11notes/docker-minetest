@@ -41,6 +41,7 @@
 			mesa-dev \
 			openal-soft-dev \
 			python3-dev \
+			sqlite \
 			sqlite-dev \
 			leveldb-dev \
 			zstd-dev \
@@ -56,15 +57,11 @@
 		&& apk add --update --no-cache \
 			curl \
 			gmp \
-			hiredis \
 			libgcc \
 			libintl \
 			libstdc++ \
 			luajit \
 			lua-socket \
-			sqlite \
-			sqlite-libs \
-			leveldb \
 			shadow \
 		&& echo "# :: creating user :: #" \
 		&& addgroup --gid 1000 -S minetest \
@@ -90,15 +87,22 @@
 			-DCUSTOM_DOCDIR="/usr/share/doc/minetest" \
 			-DCUSTOM_SHAREDIR="/usr/share/minetest" \
 			-DENABLE_CURL=0 \
-			-DENABLE_FREETYPE=0 \
+			-DENABLE_FREETYPE=1 \
 			-DENABLE_GETTEXT=0 \
 			-DENABLE_POSTGRESQL=0 \
-			-DENABLE_LEVELDB=1 \
+			-DENABLE_LEVELDB=0 \
 			-DENABLE_LUAJIT=1 \
-			-DENABLE_REDIS=0 \
+			-DENABLE_REDIS=1 \
 			-DENABLE_SOUND=1 \
 			-DENABLE_SYSTEM_GMP=1 \
 			-DRUN_IN_PLACE=0 \
+			-DSQLITE3_INCLUDE_DIR="/usr/include" \
+			-DSQLITE3_LIBRARY="/usr/lib" \
+			-DREDIS_INCLUDE_DIR="/usr/include/hiredis" \
+			-DREDIS_LIBRARY="/usr/lib"  \
+			-DFREETYPE_INCLUDE_DIR_freetype2="/usr/include/freetype2/freetype" \
+			-DFREETYPE_INCLUDE_DIR_ft2build="/usr/include/freetype2" \
+			-DFREETYPE_LIBRARY="/usr/lib" \
 			-DVERSION_EXTRA="11notes" \
 		&& make \
 		&& make install \
