@@ -39,8 +39,10 @@
 			ncurses-dev \
 			openal-soft-dev \
 			python3-dev \
+			leveldb-dev \
 			sqlite-dev; \
 		apk add --update --no-cache \
+			leveldb \
 			curl \
 			gmp \
 			hiredis \
@@ -66,20 +68,26 @@
 		cd /tmp/minetest; \
 		cmake .  \
 			-DBUILD_CLIENT=0 \
-			-DBUILD_SERVER=1 \
 			-DCMAKE_INSTALL_PREFIX=/usr \
 			-DCUSTOM_BINDIR=/usr/bin \
 			-DCUSTOM_DOCDIR="/usr/share/doc/minetest" \
 			-DCUSTOM_SHAREDIR="/usr/share/minetest" \
 			-DENABLE_CURL=1 \
-			-DENABLE_FREETYPE=1 \
+			-DENABLE_FREETYPE=0 \
 			-DENABLE_GETTEXT=0 \
-			-DENABLE_LEVELDB=1 \
+			-DENABLE_LEVELDB=0 \
 			-DENABLE_LUAJIT=1 \
-			-DENABLE_REDIS=1 \
+			-DENABLE_REDIS=0 \
 			-DENABLE_SOUND=1 \
 			-DENABLE_SYSTEM_GMP=1 \
-			-DRUN_IN_PLACE=0; \
+			-DRUN_IN_PLACE=0 \
+			-DLEVELDB_INCLUDE_DIR="/usr/include/leveldb" \
+			-DLEVELDB_LIBRARY="/usr/lib" \
+			-DSQLITE3_INCLUDE_DIR="/usr/include" \
+			-DSQLITE3_LIBRARY="/usr/lib" \
+			-DLUA_INCLUDE_DIR="/usr/include/luajit-2.1" \
+			-DLUA_LIBRARY="/usr/lib/" \
+			-DBUILD_SERVER=1; \
 		make -j 2; \
 		make install; \
 		cp -R /usr/share/minetest/games /minetest; \
