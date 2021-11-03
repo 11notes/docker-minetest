@@ -40,16 +40,12 @@
 			sqlite-dev; \
         git clone -b ${minetestVersion} --single-branch --depth 1 https://github.com/minetest/minetest.git; \
         cd /minetest; \
-        git clone -b ${minetestVersion} --single-branch --depth 1 https://github.com/minetest/minetest_game.git games/minetest_game;
-
-	WORKDIR /minetest
-
-    RUN set -ex; \
-        cmake . \
-            -DRUN_IN_PLACE=1 \
+        git clone -b ${minetestVersion} --single-branch --depth 1 https://github.com/minetest/minetest_game.git games/minetest_game; \
+		cmake . \
             -DBUILD_CLIENT=0 \
             -DBUILD_SERVER=1 \
             -DRUN_IN_PLACE=1 \
+			-DENABLE_SYSTEM_GMP=1 \
             -DENABLE_SYSTEM_JSONCPP=0 \
             -DENABLE_FREETYPE=0 \
             -DENABLE_GETTEXT=0 \
@@ -63,7 +59,7 @@
         mkdir -p /build; \
         cp -R bin /build; \
         cp -R games /build; \
-        cp -R builtin /build;
+        cp -R builtin /build;        
 
 # :: Header
 	FROM alpine:3.14
