@@ -27,6 +27,8 @@
 			luajit-dev \
 			make \
 			mesa-dev \
+			gmp-dev \
+			jsoncpp-dev \
 			openal-soft-dev \
 			python3-dev \
             irrlicht-dev \
@@ -48,7 +50,7 @@
             -DBUILD_CLIENT=0 \
             -DBUILD_SERVER=1 \
             -DRUN_IN_PLACE=1 \
-            -DENABLE_SYSTEM_JSONCPP=1 \
+            -DENABLE_SYSTEM_JSONCPP=0 \
             -DENABLE_FREETYPE=0 \
             -DENABLE_GETTEXT=0 \
             -DENABLE_LEVELDB=0 \
