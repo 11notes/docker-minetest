@@ -1,10 +1,9 @@
 # :: Build
-	FROM alpine:latest as build
+	FROM alpine:3.14 as build
 	ENV minetestVersion=5.4.1
 
     RUN set -ex; \
         echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
-        echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
         apk add --update --no-cache \
 			build-base \
             git \
@@ -32,12 +31,14 @@
 			openal-soft-dev \
 			python3-dev \
             irrlicht-dev \
-            libspatialindex-dev \
 			zstd-dev \
 			zlib-dev  \
 			libxxf86vm-dev \
 			jpeg-dev \
 			sqlite-dev; \
+		echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
+		apk add --update --no-cache \
+			libspatialindex-dev; \
         git clone -b ${minetestVersion} --single-branch --depth 1 https://github.com/minetest/minetest.git; \
         cd /minetest; \
         git clone -b ${minetestVersion} --single-branch --depth 1 https://github.com/minetest/minetest_game.git games/minetest_game; \
@@ -71,7 +72,6 @@
 	# :: prepare
 		RUN set -ex; \
 			echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
-			echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
 			apk add --update --no-cache \
 				curl \
 				gmp \
@@ -85,9 +85,11 @@
 				jsoncpp \
 				json-c \
 				hiredis \
-				libspatialindex \
 				zstd \
-				shadow;
+				shadow; \
+			echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
+			apk add --update --no-cache \
+				libspatialindex;
 
 		RUN set -ex; \
 			mkdir -p /minetest/worlds; \
