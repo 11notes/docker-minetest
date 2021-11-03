@@ -6,9 +6,11 @@
         echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
         echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
         apk add --update --no-cache \
+			build-base \
             git \
 			bzip2-dev \
 			cmake \
+			freetype-dev  \
 			curl-dev \
 			doxygen \
 			g++ \
@@ -30,10 +32,14 @@
 			openal-soft-dev \
 			python3-dev \
 			json-c-dev \
+			json-c0.12-dev \
             jsoncpp-dev \
             irrlicht-dev \
             libspatialindex-dev \
 			zstd-dev \
+			zlib-dev  \
+			libxxf86vm-dev \
+			jpeg-dev \
 			sqlite-dev; \
         git clone -b ${minetestVersion} --single-branch --depth 1 https://github.com/minetest/minetest.git; \
         cd /minetest; \
@@ -85,6 +91,7 @@
 				sqlite-libs \
 				jsoncpp \
 				json-c \
+				json-c0.12 \
 				hiredis \
 				libspatialindex \
 				zstd \
