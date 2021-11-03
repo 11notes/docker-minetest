@@ -1,5 +1,5 @@
 # :: Build
-	FROM alpine:3.14 as build
+	FROM alpine:latest as build
 	ENV minetestVersion=5.4.1
 
     RUN set -ex; \
@@ -46,6 +46,8 @@
             -DBUILD_CLIENT=0 \
             -DBUILD_SERVER=1 \
             -DRUN_IN_PLACE=1 \
+			-DCURSES_LIBRARY="/usr/lib" \
+			-DSQLITE3_LIBRARY="/usr/lib" \
 			-DENABLE_SYSTEM_GMP=1 \
             -DENABLE_SYSTEM_JSONCPP=0 \
             -DENABLE_FREETYPE=0 \
@@ -54,7 +56,9 @@
             -DENABLE_POSTGRESQL=0 \
             -DENABLE_REDIS=1 \
             -DENABLE_CURL=1 \
+			-DCURL_LIBRARY="/usr/lib" \
             -DENABLE_LUAJIT=1 \
+			-DLUA_LIBRARY="/usr/lib" \
             -DENABLE_SPATIAL=1; \
         make -j $(nproc); \
         mkdir -p /build; \
@@ -71,7 +75,7 @@
 
 	# :: prepare
 		RUN set -ex; \
-			echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
+			echo "http://dl-cdn.alpinelinux.org/alpine/v3.14/community" >> /etc/apk/repositories; \
 			apk add --update --no-cache \
 				curl \
 				gmp \
