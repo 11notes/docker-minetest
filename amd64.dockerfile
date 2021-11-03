@@ -46,8 +46,8 @@
             -DBUILD_CLIENT=0 \
             -DBUILD_SERVER=1 \
             -DRUN_IN_PLACE=1 \
-			-DCURSES_LIBRARY="/usr/lib" \
-			-DSQLITE3_LIBRARY="/usr/lib" \
+			-DCURSES_LIBRARY="/usr/lib/libcurses.so" \
+			-DSQLITE3_LIBRARY="/usr/lib/libsqlite3.so" \
 			-DENABLE_SYSTEM_GMP=1 \
             -DENABLE_SYSTEM_JSONCPP=0 \
             -DENABLE_FREETYPE=0 \
@@ -55,13 +55,13 @@
             -DENABLE_LEVELDB=0 \
             -DENABLE_POSTGRESQL=0 \
             -DENABLE_REDIS=1 \
-			-DREDIS_LIBRARY="/usr/lib" \
+			-DREDIS_LIBRARY="/usr/lib/libhiredis.so" \
             -DENABLE_CURL=1 \
-			-DCURL_LIBRARY="/usr/lib" \
+			-DCURL_LIBRARY="/usr/lib/libcurl.so" \
             -DENABLE_LUAJIT=1 \
-			-DLUA_LIBRARY="/usr/lib" \
+			-DLUA_LIBRARY="/usr/lib/libluajit-5.1.so" \
             -DENABLE_SPATIAL=1 \
-			-DSPATIAL_LIBRARY="/usr/lib"; \
+			-DSPATIAL_LIBRARY="/usr/lib/libspatialindex.so.6"; \
         make -j $(nproc); \
         mkdir -p /build; \
         cp -R bin /build; \
