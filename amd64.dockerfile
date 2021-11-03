@@ -55,11 +55,13 @@
             -DENABLE_LEVELDB=0 \
             -DENABLE_POSTGRESQL=0 \
             -DENABLE_REDIS=1 \
+			-DREDIS_LIBRARY="/usr/lib" \
             -DENABLE_CURL=1 \
 			-DCURL_LIBRARY="/usr/lib" \
             -DENABLE_LUAJIT=1 \
 			-DLUA_LIBRARY="/usr/lib" \
-            -DENABLE_SPATIAL=1; \
+            -DENABLE_SPATIAL=1 \
+			-DSPATIAL_LIBRARY="/usr/lib"; \
         make -j $(nproc); \
         mkdir -p /build; \
         cp -R bin /build; \

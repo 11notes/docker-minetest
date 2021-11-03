@@ -18,7 +18,7 @@ Purpose: Minetest games
 docker run --name minetest \
     -v volume-etc:/minetest/etc \
     -v volume-games:/minetest/games \
-    -d 11notes/minetest:latest
+    -d 11notes/minetest:[tag]
 ```
 
 ## Docker -u 1000:1000 (no root initiative)
@@ -28,7 +28,6 @@ As part to make containers more secure, this container will not run as root, but
 ## Build with
 * [Alpine Linux](https://alpinelinux.org/) - Alpine Linux
 * [Minetest](https://www.minetest.net/) - Minetest
-* [LevelDB](https://github.com/google/leveldb) - Google LevelDB
 
 ## Tips
 
