@@ -15,8 +15,6 @@
 			doxygen \
 			g++ \
 			gcc \
-			git \
-			gmp-dev \
 			hiredis-dev \
             ncurses-dev \
 			icu-dev \
@@ -31,8 +29,6 @@
 			mesa-dev \
 			openal-soft-dev \
 			python3-dev \
-			json-c-dev \
-            jsoncpp-dev \
             irrlicht-dev \
             libspatialindex-dev \
 			zstd-dev \
