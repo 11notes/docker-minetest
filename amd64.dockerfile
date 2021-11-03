@@ -32,7 +32,6 @@
 			openal-soft-dev \
 			python3-dev \
 			json-c-dev \
-			json-c0.12-dev \
             jsoncpp-dev \
             irrlicht-dev \
             libspatialindex-dev \
@@ -91,7 +90,6 @@
 				sqlite-libs \
 				jsoncpp \
 				json-c \
-				json-c0.12 \
 				hiredis \
 				libspatialindex \
 				zstd \
