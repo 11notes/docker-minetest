@@ -29,6 +29,7 @@
 			mesa-dev \
 			openal-soft-dev \
 			python3-dev \
+			json-c-dev \
             jsoncpp-dev \
             irrlicht-dev \
             libspatialindex-dev \
@@ -83,6 +84,7 @@
 				sqlite \
 				sqlite-libs \
 				jsoncpp \
+				json-c \
 				hiredis \
 				libspatialindex \
 				zstd \
