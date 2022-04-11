@@ -35,8 +35,6 @@
 			zlib-dev  \
 			libxxf86vm-dev \
 			jpeg-dev \
-			zstd \
-			zstd-dev \
 			sqlite-dev; \
 		echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
 		apk add --update --no-cache \
@@ -94,7 +92,7 @@
 				jsoncpp \
 				json-c \
 				hiredis \
-				zstd \
+				zstd-dev \
 				shadow; \
 			echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
 			apk add --update --no-cache \
