@@ -35,6 +35,8 @@
 			zlib-dev  \
 			libxxf86vm-dev \
 			jpeg-dev \
+			zstd \
+			zstd-dev \
 			sqlite-dev; \
 		echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
 		apk add --update --no-cache \
@@ -61,7 +63,8 @@
             -DENABLE_LUAJIT=1 \
 			-DLUA_LIBRARY="/usr/lib/libluajit-5.1.so" \
             -DENABLE_SPATIAL=1 \
-			-DSPATIAL_LIBRARY="/usr/lib/libspatialindex.so.6"; \
+			-DSPATIAL_LIBRARY="/usr/lib/libspatialindex.so.6" \
+			-DZSTD_LIBRARY="/usr/lib/libzstd.so"; \
         make -j $(nproc); \
         mkdir -p /build; \
         cp -R bin /build; \
