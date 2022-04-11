@@ -1,6 +1,6 @@
 # :: Build
 	FROM alpine:latest as build
-	ENV minetestVersion=5.4.1
+	ENV minetestVersion=5.5.0
 
     RUN set -ex; \
         echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
@@ -101,7 +101,8 @@
 			mkdir -p /minetest/worlds; \
 			mkdir -p /minetest/log; \
 			addgroup --gid 1000 -S minetest; \
-			adduser --uid 1000 -D -S -h /minetest -s /sbin/nologin -G minetest minetest;
+			adduser --uid 1000 -D -S -h /minetest -s /sbin/nologin -G minetest minetest \
+			ln -sf /dev/stdout /minetest/log/default.log;
 
     # :: copy root filesystem changes
         COPY ./rootfs / 
