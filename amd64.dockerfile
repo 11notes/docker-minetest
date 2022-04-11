@@ -102,8 +102,7 @@
 			mkdir -p /minetest/worlds; \
 			mkdir -p /minetest/log; \
 			addgroup --gid 1000 -S minetest; \
-			adduser --uid 1000 -D -S -h /minetest -s /sbin/nologin -G minetest minetest; \
-			ln -sf /dev/stdout /minetest/log/default.log;
+			adduser --uid 1000 -D -S -h /minetest -s /sbin/nologin -G minetest minetest;
 
     # :: copy root filesystem changes
         COPY ./rootfs / 
